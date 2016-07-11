@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+ <form>
+  <fieldset name = "mec_filter">
+   <field
+    type="calendar"
+    name="jform_publish_up"
+    label="Datum ab:"
+    default="NOW"
+    description="Auswahl des Zeitraumanfangs"
+    format="%d.%m.%Y"
+    class="inputbox"
+    size="10"
+    maxlength="10"
+   />
+   <field
+    type="calendar"
+    name="jform_publish_down"
+    label="Datum bis:"
+    default="NOW"
+    description="Auswahl des Zeitraumendes"
+    format="%d.%m.%Y"
+    class="inputbox"
+    size="10"
+    maxlength="10"
+   />
+# Group selection
+   <field name="og" type="list" default="" label="Ortsgruppe:" description="Ortsgruppe">
+      <option value="0"> - alle - </option>
+      <option value="1">Aachen</option>
+      <option value="2">Adenau</option>
+      <option value="3">Eschweiler</option>
+      <option value="4">Hauptverein</option>
+      <option value="5">Kaisersesch</option>
+      <option value="6">Linz</option>
+      <option value="7">Marmagen</option>
+      <option value="8">Neuss</option>
+      <option value="9">Roetgen</option>
+   </field>
+  </fieldset>
+ </form>
