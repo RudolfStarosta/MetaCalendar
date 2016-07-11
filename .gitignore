@@ -1,5 +1,8 @@
+/.buildpath
 /.gitignore
 /.htaccess
+/.project
+/.settings
 /administrator/cache/*
 /administrator/components/com_admin/*
 /administrator/components/com_ajax/*
