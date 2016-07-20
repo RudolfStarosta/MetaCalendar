@@ -3,4 +3,4 @@ Show several JEvents Calendars from different Joomla! sites. JEvents is an exten
 
 Requires a working Joomla! installation.
 
-Tested with Joomla! version 3.5 and JEvents version x.
+Tested with Joomla! version 3.6.0 and JEvents version 3.4.14.
