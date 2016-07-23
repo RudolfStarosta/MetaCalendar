@@ -28,11 +28,11 @@
       <option value="0"> - alle - </option>
       <option value="1">Aachen</option>
       <option value="2">Adenau</option>
-      <option value="3">Eschweiler</option>
+      <option value="eschweiler">Eschweiler</option>
       <option value="4">Hauptverein</option>
       <option value="5">Kaisersesch</option>
       <option value="6">Linz</option>
-      <option value="7">Marmagen</option>
+      <option value="marmagen">Marmagen</option>
       <option value="8">Neuss</option>
       <option value="9">Roetgen</option>
    </field>

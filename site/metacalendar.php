@@ -3,17 +3,18 @@
 defined('_JEXEC') or die;
 
 // Debug or not
-defined('mc_Debug') or define('mc_Debug', FALSE);
+defined('mc_Debug') or define('mc_Debug', TRUE);
 
 if (mc_Debug) {
-  echo '<h3> + Entering File ' . __FILE__ . ' + </h3> <br />';
-  echo '<h4> + Line is ' . __LINE__ . ' + </h4> <br />';
-  echo '<h4> + We are in class ' . __CLASS__ . ' + </h4> <br />';
-  echo '<h4> + Method is ' . __METHOD__ . ' + </h4> <br />';
+  echo '<pre>';
+  echo 'File: ' . __FILE__ . '<br/>';
+  echo 'Line: ' . __LINE__ . '<br/>';
+  echo 'Class: ' . __CLASS__ . '<br/>';
+  echo 'Method: ' . __METHOD__ . '<hr/>';
   echo 'Dump of $_POST <br />';
   var_dump($_POST);
   // phpinfo();
-  echo '<br />';
+  echo '</pre>';
 }
 
 // Controller-Objekt erstellen:
@@ -28,6 +29,10 @@ $controller->execute('');
 if (mc_Debug) echo '--> Redirect Controller <br />';
 $controller->redirect();
 
-if (mc_Debug) echo '<h3> + Leaving File ' . __FILE__ . ' + </h3> <br />';
+if (mc_Debug) {
+  echo '<pre>';
+  echo 'Leaving File ' . __FILE__ . '<br />';
+  echo '</pre>';
+}
 
 ?>
