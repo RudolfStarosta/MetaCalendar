@@ -25,16 +25,17 @@
    />
 # Group selection
    <field name="og" type="list" default="" label="Ortsgruppe:" description="Ortsgruppe">
-      <option value="0"> - alle - </option>
-      <option value="1">Aachen</option>
-      <option value="2">Adenau</option>
+      <option value="all"> - alle - </option>
+      <option value="aachen">Aachen</option>
+      <option value="adenau">Adenau</option>
+      <option value="erftstadt">Erftstadt</option>
       <option value="eschweiler">Eschweiler</option>
-      <option value="4">Hauptverein</option>
-      <option value="5">Kaisersesch</option>
-      <option value="6">Linz</option>
+      <option value="hauptverein">Hauptverein</option>
+      <option value="kaisersesch">Kaisersesch</option>
+      <option value="linz">Linz</option>
       <option value="marmagen">Marmagen</option>
-      <option value="8">Neuss</option>
-      <option value="9">Roetgen</option>
+      <option value="neuss">Neuss</option>
+      <option value="roetgen">Roetgen</option>
    </field>
   </fieldset>
  </form>

@@ -3,11 +3,12 @@
 defined('_JEXEC') or die;
 
 if (mc_Debug) {
-  echo '<h3> + Entering File ' . __FILE__ . ' + </h3> <br />';
-  echo '<h4> + Line is ' . __LINE__ . ' + </h4> <br />';
-  echo '<h4> + We are in class ' . __CLASS__ . ' + </h4> <br />';
-  echo '<h4> + Method is ' . __METHOD__ . ' + </h4> <br />';
-  echo '<br />';
+  echo '<pre>';
+  echo 'File: ' . __FILE__ . '<br/>';
+  echo 'Line: ' . __LINE__ . '<br/>';
+  echo 'Class: ' . __CLASS__ . '<br/>';
+  echo 'Method: ' . __METHOD__ . '<hr/>';
+  echo '</pre>';
 }
 
 // Die Model-Klasse (von JModelLegacy abgeleitet):
@@ -16,14 +17,15 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
  function getForm()
  {
 
-  if (mc_Debug) {
-   echo '<h3> + Entering File ' . __FILE__ . ' + </h3> <br />';
-   echo '<h4> + Line is ' . __LINE__ . ' + </h4> <br />';
-   echo '<h4> + We are in class ' . __CLASS__ . ' + </h4> <br />';
-   echo '<h4> + Method is ' . __METHOD__ . ' + </h4> <br />';
-   echo '<br />';
+   if (mc_Debug) {
+    echo '<pre>';
+    echo 'File: ' . __FILE__ . '<br/>';
+    echo 'Line: ' . __LINE__ . '<br/>';
+    echo 'Class: ' . __CLASS__ . '<br/>';
+    echo 'Method: ' . __METHOD__ . '<hr/>';
+    echo '</pre>';
   }
-
+ 	
   // Check if the form exists already
   if (empty($form))
   {
@@ -133,12 +135,19 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
   $db = JFactory::getDbo();
 
   // Compose Query to retrieve JEvents tables
-
+  // Check which table prefix is wanted, all means all
   $query = $db->getQuery(true);
   $query->select("TABLE_NAME");
   $query->from("INFORMATION_SCHEMA.TABLES");
-  $query->where("TABLE_NAME LIKE '%jevents_vevdetail'");
 
+  if ($_POST["og"] == 'all') {
+    $query->where("TABLE_NAME LIKE '%jevents_vevdetail'");
+  }
+  else {
+  	$query->where("TABLE_NAME LIKE 'eschweiler_jevents_vevdetail'");
+  }
+
+  
   // Get data
 
   $db->setQuery((string)$query);

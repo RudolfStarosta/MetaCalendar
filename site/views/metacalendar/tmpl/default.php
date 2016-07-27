@@ -2,7 +2,14 @@
 // Layout of Metacalendar default view
 defined('_JEXEC') or die;
 
-if (mc_Debug) echo "<h3> + Entering site/views/metacalendar/tmpl/default.php + </h3> <br />";
+if (mc_Debug) {
+  echo '<pre>';
+  echo 'File: ' . __FILE__ . '<br/>';
+  echo 'Line: ' . __LINE__ . '<br/>';
+  echo 'Class: ' . __CLASS__ . '<br/>';
+  echo 'Method: ' . __METHOD__ . '<hr/>';
+  echo '</pre>';
+}
 
 ?>
 
@@ -34,14 +41,15 @@ if (mc_Debug) echo "<h3> + Entering site/views/metacalendar/tmpl/default.php + <
       echo "No events found, returning to caller. <br />";
       echo "<h3> + Returning from site/views/metacalendar/tmpl/default.php + </h3> <br />";
     }
+  	echo "<h2> Keine Termine für diese Auswahl gefunden</h2>";
     return;
   }
 
-  if (mc_Debug) echo "# of tables found: " . count($this->allEvents) . "<br />";
+  if (mc_Debug) echo "# of tables found: " . count($this->allEvents) . "<br />";  
   foreach($this->allEvents as $name=>$entry)
   {
     $og = ucfirst($name);
-  	echo "<h2> Termine der Ortgruppe $og </h2>"
+  	echo "<h2> Termine der Ortgruppe $og </h2>";
 ?>
 <!-- @@@ Datum, Uhrzeit, Ereignis, Ort -->
 <table>
