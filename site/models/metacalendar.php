@@ -87,13 +87,14 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
 
  function getEvents()
  {
-   if (mc_Debug) {
-     echo '<h3> + Entering File ' . __FILE__ . ' + </h3> <br />';
-     echo '<h4> + Line is ' . __LINE__ . ' + </h4> <br />';
-     echo '<h4> + We are in class ' . __CLASS__ . ' + </h4> <br />';
-     echo '<h4> + Method is ' . __METHOD__ . ' + </h4> <br />';
-     echo '<br />';
-   }
+  if (mc_Debug) {
+    echo '<pre>';
+    echo 'File: ' . __FILE__ . '<br/>';
+    echo 'Line: ' . __LINE__ . '<br/>';
+    echo 'Class: ' . __CLASS__ . '<br/>';
+    echo 'Method: ' . __METHOD__ . '<hr/>';
+    echo '</pre>';
+  }
 
   if (isset($_POST["jform_publish_up"])){
     // Get "From date"
@@ -118,10 +119,13 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
   // Set the dates to the entered values
   
   if (mc_Debug) {
+    echo '<pre>';
   	echo "date_from_utc = ", $date_from_utc, "<br />";
     echo "date_to_utc = ", $date_to_utc, "<br />";
   	echo "date_from = ", $date_from, "<br />";
     echo "date_to = ", $date_to, "<br />";
+    echo "Ortsgruppe = ", $_POST["og"], "<br />";
+    echo '</pre>';
   }
 
   // Create database object:

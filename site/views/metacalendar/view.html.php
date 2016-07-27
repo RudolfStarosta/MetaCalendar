@@ -2,7 +2,14 @@
 // Erlaube Zugriff nur von Joomla! aus:
 defined('_JEXEC') or die;
 
-if (mc_Debug) echo "<h3> + Entering site/views/metacalendar/view.html.php + </h3> <br />";
+if (mc_Debug) {
+  echo '<pre>';
+  echo 'File: ' . __FILE__ . '<br/>';
+  echo 'Line: ' . __LINE__ . '<br/>';
+  echo 'Class: ' . __CLASS__ . '<br/>';
+  echo 'Method: ' . __METHOD__ . '<hr/>';
+  echo '</pre>';
+}
 
 // Die View-Klasse (von JViewLegacy abgeleitet):
 class MetaCalendarViewMetaCalendar extends JViewLegacy
