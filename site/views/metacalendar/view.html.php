@@ -25,9 +25,11 @@ class MetaCalendarViewMetaCalendar extends JViewLegacy
   if (mc_Debug) echo "<h4> ++ Begin: site/views/metacalendar/view.html.php::display() ++ </h4> <br />";
 
   // Form to filter events
+  // Build default form on first call or if no valid values given
+  
   $this->form        = $this->get('Form');
 
-  // Get all Events vom Model
+  // Get Events vom Model as required by filter form
   
   $this->allEvents   = $this->get('Events');
 

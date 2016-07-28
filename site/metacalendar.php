@@ -3,7 +3,7 @@
 defined('_JEXEC') or die;
 
 // Debug or not
-defined('mc_Debug') or define('mc_Debug', TRUE);
+defined('mc_Debug') or define('mc_Debug', FALSE);
 
 if (mc_Debug) {
   echo '<pre>';

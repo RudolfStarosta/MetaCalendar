@@ -26,7 +26,8 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
     echo '</pre>';
   }
  	
-  // Check if the form exists already
+  // Check if the form exists already otherwise create it and fill it
+  // with default values
   if (empty($form))
   {
     // Load form
@@ -73,15 +74,27 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
    	$date_down = new DateTime();
    	$date_down->modify("+7 day");
    	$_POST["jform_publish_down"] = $date_down->format("d.m.Y");
-   }
+  }
 
-   // Set the 
+  $og = $_POST["og"];
+  if ($og)
+  {
+  	if (mc_Debug) echo "Entered date down ", $og, "<br />";
+  	$_POST["og"] = $og;
+  }
+  else
+  {
+  	$_POST["og"] = "all";
+  }
+  
+   // Set the values once again
    $form->setValue("jform_publish_up","",$_POST["jform_publish_up"]);
    $form->setValue("jform_publish_down","",$_POST["jform_publish_down"]);
-
+   $form->setValue("og","",$_POST["og"]);
+    
    if (mc_Debug) echo "jform_publish_up = ", $form->getValue("jform_publish_up"), "<br />";
    if (mc_Debug) echo "jform_publish_down = ", $form->getValue("jform_publish_down"), "<br />";
-   if (mc_Debug) echo "<h4> ++ End: site/models/metacalendar.php::getForm() + </h4> <br />";
+   if (mc_Debug) echo "og = ", $form->getValue("og"), "<br />";
 
    return $form;
 
@@ -98,26 +111,20 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
     echo '</pre>';
   }
 
-  if (isset($_POST["jform_publish_up"])){
-    // Get "From date"
-  	$date_from_utc =
-  	(string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_up"])->format('U');
+  // Get "From date"
+  $date_from_utc =
+  (string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_up"])->format('U');
   	
-  	$date_from =
-  	(string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_up"])->format('Y-m-d H:i:s');
+  $date_from =
+  (string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_up"])->format('Y-m-d H:i:s');
   	 
-    // Get "To date"
-    $date_to_utc =
-    (string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_down"])->format('U');
+  // Get "To date"
+  $date_to_utc =
+  (string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_down"])->format('U');
     
-    $date_to =
-    (string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_down"])->format('Y-m-d H:i:s');
+  $date_to =
+  (string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_down"])->format('Y-m-d H:i:s');
     
-  }
-  else {
-    if (mc_Debug) echo "No valid dates.", "<br />";
-    return;
-  }
   // Set the dates to the entered values
   
   if (mc_Debug) {
@@ -144,7 +151,8 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
     $query->where("TABLE_NAME LIKE '%jevents_vevdetail'");
   }
   else {
-  	$query->where("TABLE_NAME LIKE 'eschweiler_jevents_vevdetail'");
+  	$jev_tableName = "'" . $_POST["og"] . "_jevents_vevdetail'";
+  	$query->where("TABLE_NAME LIKE " . $jev_tableName);
   }
 
   
