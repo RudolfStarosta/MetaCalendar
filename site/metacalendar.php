@@ -3,14 +3,13 @@
 defined('_JEXEC') or die;
 
 // Debug or not
-defined('mc_Debug') or define('mc_Debug', FALSE);
+defined('mc_Debug') or define('mc_Debug', TRUE);
+
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+		      "Debugging on!");
 
 if (mc_Debug) {
   echo '<pre>';
-  echo 'File: ' . __FILE__ . '<br/>';
-  echo 'Line: ' . __LINE__ . '<br/>';
-  echo 'Class: ' . __CLASS__ . '<br/>';
-  echo 'Method: ' . __METHOD__ . '<hr/>';
   echo 'Dump of $_POST <br />';
   var_dump($_POST);
   // phpinfo();
@@ -18,21 +17,37 @@ if (mc_Debug) {
 }
 
 // Controller-Objekt erstellen:
-if (mc_Debug) echo '--> Create instance of controller <br />';
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+              "Create instance of controller");
+
 $controller = JControllerLegacy::getInstance('MetaCalendar');
 
 // Die gestellte Aufgabe lösen:
-if (mc_Debug) echo '--> Execute Controller <br />';
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+              "Create instance of controller");
+
 $controller->execute('');
 
 // Weiterleiten, sofern der Controller dies verlangt:
-if (mc_Debug) echo '--> Redirect Controller <br />';
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+              "Redirect Controller");
+
 $controller->redirect();
 
-if (mc_Debug) {
-  echo '<pre>';
-  echo 'Leaving File ' . __FILE__ . '<br />';
-  echo '</pre>';
+function mc_debug_echo($file, $line, $class, $method, $text)
+{
+  if (mc_Debug) {
+	echo '<pre>';
+    echo 'File: ' . $file . '<br/>';
+    echo 'Line: ' . $line . '<br/>';
+    echo 'Class: ' . $class . '<br/>';
+    echo 'Method: ' . $method . '<br/>';
+	echo 'Text: ' . $text . '<br />';
+	echo '</pre>';
+  }
 }
+
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+              "Leaving File");
 
 ?>

@@ -24,7 +24,7 @@
     maxlength="10"
    />
 # Group selection
-   <field name="og" type="list" default="" label="Ortsgruppe:" description="Ortsgruppe">
+   <field name="prefix" type="list" default="all" label="Kalender:" description="Kalender">
       <option value="all"> - alle - </option>
       <option value="aachen">Aachen</option>
       <option value="adenau">Adenau</option>
@@ -35,7 +35,7 @@
       <option value="linz">Linz</option>
       <option value="marmagen">Marmagen</option>
       <option value="neuss">Neuss</option>
-      <option value="roetgen">Roetgen</option>
+      <option value="wittlichland">Wittlich-Land</option>
    </field>
   </fieldset>
  </form>

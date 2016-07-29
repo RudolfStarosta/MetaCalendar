@@ -25,7 +25,7 @@ if (mc_Debug) {
   <tr>
     <td style="padding:20px; vertical-align: bottom;"> <?php echo $this->form->renderField('jform_publish_up'); ?> </td>
     <td style="padding:20px; vertical-align: bottom;"> <?php echo $this->form->renderField('jform_publish_down'); ?> </td>
-    <td style="padding:20px; vertical-align: bottom;"> <?php echo $this->form->renderField('og'); ?> </td>
+    <td style="padding:20px; vertical-align: bottom;"> <?php echo $this->form->renderField('prefix'); ?> </td>
     <td style="padding:20px; vertical-align: bottom;"> <br /> <input type=submit value="Suchen"> </td>
   </tr>
   </table>
@@ -49,7 +49,7 @@ if (mc_Debug) {
   foreach($this->allEvents as $name=>$entry)
   {
     $og = ucfirst($name);
-  	echo "<h2> Termine der Ortgruppe $og </h2>";
+  	echo "<h2> Termine der Ortsgruppe $og </h2>";
 ?>
 <!-- @@@ Datum, Uhrzeit, Ereignis, Ort -->
 <table>

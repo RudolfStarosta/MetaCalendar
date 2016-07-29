@@ -2,33 +2,32 @@
 // Erlaube Zugriff nur von Joomla! aus:
 defined('_JEXEC') or die;
 
-if (mc_Debug) {
-  echo '<pre>';
-  echo 'File: ' . __FILE__ . '<br/>';
-  echo 'Line: ' . __LINE__ . '<br/>';
-  echo 'Class: ' . __CLASS__ . '<br/>';
-  echo 'Method: ' . __METHOD__ . '<hr/>';
-  echo '</pre>';
-}
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+              "Entering file");
 
 // Die View-Klasse (von JViewLegacy abgeleitet):
 class MetaCalendarViewMetaCalendar extends JViewLegacy
 {
 
- protected $allEvents;   // Variable to hold all Tables with events regardless of their prefix
- protected $form;        // Variable to hold the filter form
-
+ protected $form;        // Variable to hold the selection filter form
+ protected $allEvents;   // Variable to hold all tables according to selection
+ 
  // Ausgabefunktion:
  
  function display($tpl = null)
  {
-  if (mc_Debug) echo "<h4> ++ Begin: site/views/metacalendar/view.html.php::display() ++ </h4> <br />";
+  mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+                "-");
 
   // Form to filter events
   // Build default form on first call or if no valid values given
   
+  mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+               "Before get(\'Form\')");
   $this->form        = $this->get('Form');
-
+  mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+               "After get(\'Form\')");
+   
   // Get Events vom Model as required by filter form
   
   $this->allEvents   = $this->get('Events');
@@ -38,11 +37,13 @@ class MetaCalendarViewMetaCalendar extends JViewLegacy
   
   parent::display($tpl);
 
-  if (mc_Debug) echo "<h4> ++ End: site/views/metacalendar/view.html.php::display() ++ </h4> <br />";
-
+  mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+               "End of function");
+  
  }
 }
 
-if (mc_Debug) echo "<h3> + Leaving site/views/metacalendar/view.html.php + </h3> <br />";
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+             "End of file");
 
 ?>

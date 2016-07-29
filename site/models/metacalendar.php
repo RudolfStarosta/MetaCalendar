@@ -2,14 +2,8 @@
 // Sicherheitsprüfung: Wird die Klasse von Joomla! verwendet?
 defined('_JEXEC') or die;
 
-if (mc_Debug) {
-  echo '<pre>';
-  echo 'File: ' . __FILE__ . '<br/>';
-  echo 'Line: ' . __LINE__ . '<br/>';
-  echo 'Class: ' . __CLASS__ . '<br/>';
-  echo 'Method: ' . __METHOD__ . '<hr/>';
-  echo '</pre>';
-}
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+              "Entering file");
 
 // Die Model-Klasse (von JModelLegacy abgeleitet):
 class MetaCalendarModelMetaCalendar extends JModelLegacy
@@ -17,14 +11,8 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
  function getForm()
  {
 
-   if (mc_Debug) {
-    echo '<pre>';
-    echo 'File: ' . __FILE__ . '<br/>';
-    echo 'Line: ' . __LINE__ . '<br/>';
-    echo 'Class: ' . __CLASS__ . '<br/>';
-    echo 'Method: ' . __METHOD__ . '<hr/>';
-    echo '</pre>';
-  }
+  mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+                "Entering getForm()");
  	
   // Check if the form exists already otherwise create it and fill it
   // with default values
@@ -42,10 +30,12 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
     // Test if empty
     if (empty($form))
     {
-      if (mc_Debug) echo "Could not create form. <br />";
+      mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+                    "Cannot create form.");
       return false;
     }
-    if (mc_Debug) echo "Succesfully created form. <br />";
+    mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+                  "Succesfully created form.");
   }
   
   // Set the dates to the entered values
@@ -76,25 +66,25 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
    	$_POST["jform_publish_down"] = $date_down->format("d.m.Y");
   }
 
-  $og = $_POST["og"];
-  if ($og)
+  $prefix = $_POST["prefix"];
+  if ($prefix)
   {
-  	if (mc_Debug) echo "Entered date down ", $og, "<br />";
-  	$_POST["og"] = $og;
+  	if (mc_Debug) echo "Entered prefix ", $prefix, "<br />";
+  	$_POST["prefix"] = $prefix;
   }
   else
   {
-  	$_POST["og"] = "all";
+  	$_POST["prefix"] = "all";
   }
   
    // Set the values once again
    $form->setValue("jform_publish_up","",$_POST["jform_publish_up"]);
    $form->setValue("jform_publish_down","",$_POST["jform_publish_down"]);
-   $form->setValue("og","",$_POST["og"]);
+   $form->setValue("prefix","",$_POST["prefix"]);
     
    if (mc_Debug) echo "jform_publish_up = ", $form->getValue("jform_publish_up"), "<br />";
    if (mc_Debug) echo "jform_publish_down = ", $form->getValue("jform_publish_down"), "<br />";
-   if (mc_Debug) echo "og = ", $form->getValue("og"), "<br />";
+   if (mc_Debug) echo "prefix = ", $form->getValue("prefix"), "<br />";
 
    return $form;
 
@@ -102,15 +92,9 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
 
  function getEvents()
  {
-  if (mc_Debug) {
-    echo '<pre>';
-    echo 'File: ' . __FILE__ . '<br/>';
-    echo 'Line: ' . __LINE__ . '<br/>';
-    echo 'Class: ' . __CLASS__ . '<br/>';
-    echo 'Method: ' . __METHOD__ . '<hr/>';
-    echo '</pre>';
-  }
-
+  mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+                "Here we go ...");
+ 	
   // Get "From date"
   $date_from_utc =
   (string)DateTime::createFromFormat('d.m.Y', $_POST["jform_publish_up"])->format('U');
@@ -133,7 +117,7 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
     echo "date_to_utc = ", $date_to_utc, "<br />";
   	echo "date_from = ", $date_from, "<br />";
     echo "date_to = ", $date_to, "<br />";
-    echo "Ortsgruppe = ", $_POST["og"], "<br />";
+    echo "prefix = ", $_POST["prefix"], "<br />";
     echo '</pre>';
   }
 
@@ -147,15 +131,14 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
   $query->select("TABLE_NAME");
   $query->from("INFORMATION_SCHEMA.TABLES");
 
-  if ($_POST["og"] == 'all') {
+  if ($_POST["prefix"] == 'all') {
     $query->where("TABLE_NAME LIKE '%jevents_vevdetail'");
   }
   else {
-  	$jev_tableName = "'" . $_POST["og"] . "_jevents_vevdetail'";
+  	$jev_tableName = "'" . $_POST["prefix"] . "_jevents_vevdetail'";
   	$query->where("TABLE_NAME LIKE " . $jev_tableName);
   }
 
-  
   // Get data
 
   $db->setQuery((string)$query);
@@ -164,8 +147,9 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
   if (mc_Debug) echo "Number of JEvent tables found: " . count($allEventTables) . "<br />";
 
   if (count($allEventTables) == 0) {
-    if (mc_Debug) echo "<h4> ++ Early end: site/models/metacalendar.php::getEvents() + </h4> <br />";
-    return false;
+    mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+                  "No tables found for this selection.");
+  	return false;
   }
 
   // Get prefixes of tables
@@ -233,12 +217,7 @@ class MetaCalendarModelMetaCalendar extends JModelLegacy
 
 } // End of class MetaCalendarModelMetaCalendar
 
-if (mc_Debug) {
-  echo '<h3> + Leaving File ' . __FILE__ . ' + </h3> <br />';
-  echo '<h4> + Line is ' . __LINE__ . ' + </h4> <br />';
-  echo '<h4> + We are in class ' . __CLASS__ . ' + </h4> <br />';
-  echo '<h4> + Method is ' . __METHOD__ . ' + </h4> <br />';
-  echo '<br />';
-}
+mc_debug_echo(__FILE__, __LINE__, __CLASS__, __METHOD__,
+              "End of file");
 
 ?>
