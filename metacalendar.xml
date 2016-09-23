@@ -8,7 +8,7 @@
   <authorUrl>http://www.joomla-user-group-aachen.org</authorUrl>
   <copyright>(C) Rudolf Starosta 2016</copyright>
   <license>GNU General Public License</license>
-  <version>0.0.6</version> <!--  Versionsnummer der Komponente -->
+  <version>0.0.7</version> <!--  Versionsnummer der Komponente -->
   <description>Collect entries from all JEvents calendars in the database assuming that multiple Joomla! installations share the same database.</description>
 
   <files folder="site">
