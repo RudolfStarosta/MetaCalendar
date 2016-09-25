@@ -2,7 +2,7 @@
 <extension type="component" version="3.5" method="upgrade"> <!-- "upgrade" erspart das Deinstallieren -->
 
   <name>MetaCalendar</name>
-  <creationDate>13. July 2016</creationDate>
+  <creationDate>13. December 2016</creationDate>
   <author>Rudolf Starosta</author>
   <authorEmail>rudi@joomla-user-group-aachen.de</authorEmail>
   <authorUrl>http://www.joomla-user-group-aachen.org</authorUrl>
